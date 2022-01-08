@@ -50,14 +50,23 @@ def run_game():
                 print("This is your last life you died! Game Over")
             else:
                 user_life -= 1 
-                user_score += 1 
                 print("You have entered a wrong guess and lost one life.")
                 print(hangman_pics.HANGMANPICS[user_score])
                 print(f"Remaining Life: {user_life}")
         elif letter_check != -1:
-            generated_blank_list[letter_check] = user_guess
-            print("Guessed Correctly")
-            print(generated_blank_list)
+            user_score += 1 
+
+            if user_score == len(generated_word):
+                print(f"You won! The word was: {generated_word}")
+                game_over = True
+            
+            else:
+                generated_blank_list[letter_check] = user_guess
+                print("Guessed Correctly")
+                print(generated_blank_list)
+
+
+
 
         else:
             print("Invalid Entry")
