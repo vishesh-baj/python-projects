@@ -28,9 +28,10 @@ def ask_user_guess():
     user_guess = input("Enter your guess: ")
     return user_guess
 
-# run the game 
 
+# run the game 
 def run_game():
+
     user_life = 7
     user_score = 0
     game_over = False
@@ -43,14 +44,15 @@ def run_game():
         print(generated_word)
         user_guess = ask_user_guess()
         letter_check = generated_word.find(user_guess)
-
         if letter_check == -1:
             if user_life == 1:
                 game_over = True
                 print("This is your last life you died! Game Over")
             else:
                 user_life -= 1 
+                user_score += 1 
                 print("You have entered a wrong guess and lost one life.")
+                print(hangman_pics.HANGMANPICS[user_score])
                 print(f"Remaining Life: {user_life}")
         elif letter_check != -1:
             generated_blank_list[letter_check] = user_guess
@@ -59,6 +61,14 @@ def run_game():
 
         else:
             print("Invalid Entry")
+
+        
+
+        
+
+
+
+
 
             
 
