@@ -24,9 +24,14 @@ def run_game():
     user_life = 7
     user_score = 0
     game_over = False
+    generated_word = generate_random_word()
+    
 
     while game_over == False:
+        user_guess = ask_user_guess()
+
         
+
 
 
 
