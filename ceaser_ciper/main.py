@@ -1,77 +1,105 @@
-# HANGMAN GAME 
-import random
-# ask user its name
-
-def ask_user_input():
-    user_name =  input("Enter your name: ")
+# CEASER CIPHER GAME 
+import data
+# ask user name 
+def ask_user_name():
+    user_name = input("Enter Username: ")
     return user_name
 
-# generate random word 
-def generate_random_word():
-    random_word = random.choice(random_words.words)
-    return random_word
+# ask user message 
+def ask_user_message(username):
+    user_message = input(f"Hi {username}! Enter your message: ")
+    return user_message
 
-# generate blank list
-def generate_blank_list(word):
-    blank_list = []
-    for _ in range(0,len(word)):
-        blank_list.append("_")
-    return blank_list
-   
-# ask user guess 
-def ask_user_guess():
-    user_guess = input("Enter your guess: ")
-    return user_guess
+# script direction 
 
-# run the game 
-def run_game():
+def script_direction():
+    direction = input('Enter "encode" to encode and "decode" to decode, "q" to quit the program: ')
+    return direction
 
-    user_life = 7
-    user_score = 0
-    game_over = False
-    generated_word = generate_random_word()
-    generated_blank_list = generate_blank_list(generated_word)
+# encoding message 
+def encode_message(message):
+    shift = int(input("Enter the shift: "))
+    encoded_list = []
+    encoded_message = []
 
-    while game_over == False:
-        print(generated_word)
-        user_guess = ask_user_guess()
-        letter_check = generated_word.find(user_guess)
-        if letter_check == -1:
-            if user_life == 1:
-                game_over = True
-                print("This is your last life you died! Game Over")
-            else:
-                user_life -= 1 
-                print("You have entered a wrong guess and lost one life.")
-                print(hangman_pics.HANGMANPICS[user_score])
-                print(f"Remaining Life: {user_life}")
-        elif letter_check != -1:
-            user_score += 1 
-
-            if user_score == len(generated_word):
-                print(f"You won! The word was: {generated_word}")
-                game_over = True
-            
-            else:
-                generated_blank_list[letter_check] = user_guess
-                print("Guessed Correctly")
-                print(generated_blank_list)
-        else:
-            print("Invalid Entry") 
-            game_over = True
-
-
-def run_specific_program():
-    return "Awesome"
+    for i in range(0,len(message)):
+        for j in range(0,len(data.alphabet)):
+            if data.alphabet[j] == message[i]:
+                encoded_list.append(j + shift)
     
-run_game()
-             
+    for i in range(0,len(encoded_list)):
+        encoded_message.append(data.alphabet[encoded_list[i]])
+    
+    return "".join(encoded_message)
+
+
+# decoding message 
+def decode_message(message):
+    shift = int(input("Enter the shift: "))
+
+    decoded_list = []
+    decoded_message = []
+
+    for i in range(0,len(message)):
+        for j in range(0,len(data.alphabet)):
+            if data.alphabet[j] == message[i]:
+                decoded_list.append(j - shift)
+
+    for i in range(0,len(decoded_list)):
+        decoded_message.append(data.alphabet[decoded_list[i]])
+
+    return "".join(decoded_message)
 
 
 
 
 
+
+# run the script 
+def run_script():
+    end_script = False 
+
+    while end_script == False:
+        user_name = ask_user_name()
+        direction = script_direction()
+        continue_script = input('Do you want to continue the script? "Y" for yes and "N" for no ')
+
+        if continue_script == "y":
+            if direction == "encode":
+                message = ask_user_message(user_name)
+                encoded_message = encode_message(message)
+                print(f"Your encoded message is: {encoded_message}")
+
+        
+            elif direction == "decode":
+                message = ask_user_message(user_name)
+                decoded_message = decode_message(message)
+                print(f"Your decoded message is {decoded_message}")
             
+            elif direction == "q":
+                print('You have choosen to quit the script')
+                print("Program Terminated")
+                end_script =True
+                
 
+
+            else: 
+                print("Script ended")
+                end_script = True
+        elif continue_script == "n":
+            print("Script is terminated")
+            end_script = True
+
+        else: 
+            print("Invalid Entry, Script Ended")
+            
+        
+        
+
+
+
+
+
+print(run_script())
 
 
