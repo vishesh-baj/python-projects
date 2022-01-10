@@ -1,13 +1,10 @@
 # CEASER CIPHER GAME 
+from typing import DefaultDict
 import data
-# ask user name 
-def ask_user_name():
-    user_name = input("Enter Username: ")
-    return user_name
 
 # ask user message 
-def ask_user_message(username):
-    user_message = input(f"Hi {username}! Enter your message: ")
+def ask_user_message():
+    user_message = input("Hi! Enter your message: ")
     return user_message
 
 # script direction 
@@ -17,89 +14,60 @@ def script_direction():
     return direction
 
 # encoding message 
-def encode_message(message):
-    shift = int(input("Enter the shift: "))
-    encoded_list = []
-    encoded_message = []
-
+def encode_message(message,shift):
+    encoded_message_list = []
     for i in range(0,len(message)):
-        for j in range(0,len(data.alphabet)):
-            if data.alphabet[j] == message[i]:
-                encoded_list.append(j + shift)
-    
-    for i in range(0,len(encoded_list)):
-        encoded_message.append(data.alphabet[encoded_list[i]])
-    
-    return "".join(encoded_message)
+        encoded_message_list.append(data.alphabet[data.alphabet.index(message[i]) + shift])
+
+    return "".join(encoded_message_list)
 
 
-# decoding message 
-def decode_message(message):
-    shift = int(input("Enter the shift: "))
-
-    decoded_list = []
-    decoded_message = []
-
+# decode message
+def decode_message(message,shift):
+    decoded_message_list = []
     for i in range(0,len(message)):
-        for j in range(0,len(data.alphabet)):
-            if data.alphabet[j] == message[i]:
-                decoded_list.append(j - shift)
+        decoded_message_list.append(data.alphabet[data.alphabet.index(message[i]) - shift])
+    
+    return "".join(decoded_message_list)
 
-    for i in range(0,len(decoded_list)):
-        decoded_message.append(data.alphabet[decoded_list[i]])
+# run script 
 
-    return "".join(decoded_message)
-
-
-
-
-
-
-# run the script 
 def run_script():
     end_script = False 
 
     while end_script == False:
-        user_name = ask_user_name()
         direction = script_direction()
-        continue_script = input('Do you want to continue the script? "Y" for yes and "N" for no ')
+        message = ask_user_message()
 
-        if continue_script == "y":
-            if direction == "encode":
-                message = ask_user_message(user_name)
-                encoded_message = encode_message(message)
-                print(f"Your encoded message is: {encoded_message}")
-
-        
-            elif direction == "decode":
-                message = ask_user_message(user_name)
-                decoded_message = decode_message(message)
-                print(f"Your decoded message is {decoded_message}")
-            
-            elif direction == "q":
-                print('You have choosen to quit the script')
-                print("Program Terminated")
-                end_script =True
-                
-
-
-            else: 
-                print("Script ended")
+        if direction == "encode":
+            shift = int(input("Enter shift: "))
+            encoded_message = encode_message(message, shift)
+            print(f"The incoded message is {encoded_message}")
+            continue_flow  = input("Do you want to continue? ")
+            if continue_flow == "n":
+                print("Program is terminated")
                 end_script = True
-        elif continue_script == "n":
-            print("Script is terminated")
+
+        elif direction == "decode":
+            shift = int(input("Enter shift: "))
+            decoded_message = decode_message(message, shift)
+            print(f"The Decoded message is {decoded_message}")
+            continue_flow  = input("Do you want to continue? ")
+            if continue_flow == "n":
+                print("Program is terminated")
+                end_script = True
+        
+        elif direction == "q":
+            print("Program is terminated")
             end_script = True
 
-        else: 
-            print("Invalid Entry, Script Ended")
-            
-        
-        
+        else:
+            print("Invalid entry")
+            continue
 
 
 
 
+run_script()
 
-print(run_script())
-
-
+ 
