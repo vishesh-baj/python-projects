@@ -3,8 +3,7 @@ import asci_art
 
 # ask for operations 
 
-            
-            
+       
 # add numbers
 def add_num(num1,num2):
     return num1 + num2
@@ -40,8 +39,6 @@ def find_answer(inp_1, inp_2, operator):
         return divide_num(inp_1,inp_2)
 
 # run program 
-
-
 def run_program():
     
     end_program = False 
@@ -52,10 +49,8 @@ def run_program():
 
     answer = find_answer(input_1,input_2,operation)
 
-
     while not end_program:
         choice = input(f"Your answer is: {answer},\nPress n to operate with new number, press 'q' to quit: ")
-
         if choice == "q":
             print("Program Stopped!")
             end_program = True
@@ -67,7 +62,8 @@ def run_program():
         else: 
             print("Invalid Response!")
             
-
-
 run_program()
+
+
+
 
