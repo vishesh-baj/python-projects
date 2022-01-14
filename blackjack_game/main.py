@@ -1,28 +1,23 @@
 # BLACK JACK GAME 
 import random
 
-
 # ask user name 
-
 def ask_user_name():
     user_name = input("Enter username: ")
     return user_name
 
 # draw random two cards from deck 
-
 def draw_card():
     deck = [1,2,3,4,5,6,7,8,9,10,10,10,10]
     return random.choice(deck)
 
 # check totals
-
 def check_card(deck_1, deck_2):
     return max(deck_1,deck_2)
 
-# run game 
+# run game
 def run_game():
-    game_over = False 
-
+    game_over = False
     while not game_over:
         user_name = ask_user_name()
         print(f"Hi! {user_name}, Do you wanna play black jack?: ")
@@ -32,7 +27,7 @@ def run_game():
             generated_deck_user = [draw_card(),draw_card()]
             generated_deck_computer = [draw_card(),draw_card()]
             user_total = sum(generated_deck_user)
-            computer_total = sum(generated_deck_computer)
+            computer_total = sum(generated_deck_computer)œ
             print(f"Your Deck is {generated_deck_user}, computer has: {random.choice(generated_deck_computer)}")
 
             turn_over = False 
@@ -62,15 +57,11 @@ def run_game():
                 
                 else: 
                     print("Invalid Entry try Again!")
-
-
-
         elif direction == "q":
             print("Program Terminted!!")
+
             game_over = True
         else:
             print("Invalid Input!")
 
 
-
-run_game()
