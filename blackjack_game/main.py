@@ -15,7 +15,7 @@ def draw_card():
 def check_card(deck_1, deck_2):
     return max(deck_1,deck_2)
 
-# run game
+# run game script
 def run_game():
     game_over = False
     while not game_over:
@@ -27,7 +27,7 @@ def run_game():
             generated_deck_user = [draw_card(),draw_card()]
             generated_deck_computer = [draw_card(),draw_card()]
             user_total = sum(generated_deck_user)
-            computer_total = sum(generated_deck_computer)œ
+            computer_total = sum(generated_deck_computer)
             print(f"Your Deck is {generated_deck_user}, computer has: {random.choice(generated_deck_computer)}")
 
             turn_over = False 
@@ -53,8 +53,7 @@ def run_game():
                     else: 
                         print(f'You Loose! Your Score: {user_total}, Computer Score: {computer_total}')
                         turn_over = True
-                        game_over = True
-                
+                        game_over = True   
                 else: 
                     print("Invalid Entry try Again!")
         elif direction == "q":
@@ -63,5 +62,3 @@ def run_game():
             game_over = True
         else:
             print("Invalid Input!")
-
-

@@ -18,7 +18,6 @@ def generate_random_number():
     random_number = random.choice(range(1,99))
     return random_number
 
-
 # check stage difficulty
 def check_stage_difficulty_lives(stage):
     lives = 0
@@ -30,10 +29,7 @@ def check_stage_difficulty_lives(stage):
         return lives    
     
 
-
-
-
-
+# program to run ther game 
 def run_game():
 
     game_over = False 
@@ -66,7 +62,24 @@ def run_game():
 
 
 
+print(
+    """
+    
+                                                                                                                                                          
+  ,ad8888ba,                                                  88                                 ,ad8888ba,                                               
+ d8"'    `"8b                                                 ""                                d8"'    `"8b                                              
+d8'                                                                                            d8'                                                        
+88             88       88   ,adPPYba,  ,adPPYba,  ,adPPYba,  88  8b,dPPYba,    ,adPPYb,d8     88             ,adPPYYba,  88,dPYba,,adPYba,    ,adPPYba,  
+88      88888  88       88  a8P_____88  I8[    ""  I8[    ""  88  88P'   `"8a  a8"    `Y88     88      88888  ""     `Y8  88P'   "88"    "8a  a8P_____88  
+Y8,        88  88       88  8PP"""""""   `"Y8ba,    `"Y8ba,   88  88       88  8b       88     Y8,        88  ,adPPPPP88  88      88      88  8PP"""""""  
+ Y8a.    .a88  "8a,   ,a88  "8b,   ,aa  aa    ]8I  aa    ]8I  88  88       88  "8a,   ,d88      Y8a.    .a88  88,    ,88  88      88      88  "8b,   ,aa  
+  `"Y88888P"    `"YbbdP'Y8   `"Ybbd8"'  `"YbbdP"'  `"YbbdP"'  88  88       88   `"YbbdP"Y8       `"Y88888P"   `"8bbdP"Y8  88      88      88   `"Ybbd8"'  
+                                                                                aa,    ,88                                                                
+                                                                                 "Y8bbdP"                                                                 
 
+    
+    """
+)
 run_game()
 
 
