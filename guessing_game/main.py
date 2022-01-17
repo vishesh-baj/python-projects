@@ -1,92 +1,90 @@
-# GUESSING GAME
+ #Number Guessing Game Objectives:
+
+# Include an ASCII art logo.
+# Allow the player to submit a guess for a number between 1 and 100.
+# Check user's guess against actual answer. Print "Too high." or "Too low." depending on the user's answer. 
+# If they got the answer correct, show the actual answer to the player.
+# Track the number of turns remaining.
+# If they run out of turns, provide feedback to the player. 
+# Include two different difficulty levels (e.g., 10 guesses in easy mode, only 5 guesses in hard mode).   
+
 import random
-# guess the number
-def guess_number(number,guess):
-    if guess > number: 
-        print(f"Guess is greater!")
-        return "m"
-    elif guess < number:
-        print("Guess is smaller")
-        return "l"
+from socketserver import ThreadingUnixDatagramServer
+# greeting and difficulty selection 
+def choose_difficulty():
+    print("Welcome to the Number Guessing Game! ")
+    print("I am Thinking of a number between 1 and 100")
+    difficulty = input("Choose a difficulty: Type 'easy' or 'hard': ")
+    return difficulty
+
+# total attempts according to the difficulty level
+def total_attempts(difficulty):
+    if difficulty == "easy":
+        print("You have choosen easy difficulty!")
+        return 5
+    elif difficulty == "hard":
+        print("You have selected hard difficulty!")
+        return 10
+
+# number to be guessed
+def return_guessing_number():
+    guessing_number = random.choice(range(1,101))
+    return guessing_number
+
+
+
+
+# guess the number 
+def guess_the_number(guessing_number):
+    guess = int(input("make a guess: "))
+    if guess == guessing_number:
+        return True
+
+    elif guess < guessing_number:
+        print("Guess is too low")
+        return False
+    elif guess > guessing_number:
+        print("Guess is too high")
+        return False
     else:
-        print("Guess is correct")
-        return "c"
+        print("Invalid Number")
 
-# generate random number to guess 
-
-def generate_random_number():
-    random_number = random.choice(range(1,99))
-    return random_number
-
-# check stage difficulty
-def check_stage_difficulty_lives(stage):
-    lives = 0
-    if stage == 1:
-        lives = 5 
-        return lives
-    elif stage == 2:
-        lives = 10
-        return lives    
     
 
-# program to run ther game 
+
+
+
+# run the game 
+
 def run_game():
+    difficulty = choose_difficulty()
+    attempts = total_attempts(difficulty)
+    guess_number = return_guessing_number()
 
     game_over = False 
-    random_number = generate_random_number()
+    print(guess_number)
     while not game_over:
-
-        stage_difficulty = int(input("Enter 1 for normal and 2 for high difficulty: "))
-        total_lives = check_stage_difficulty_lives(stage_difficulty)
-
-        if stage_difficulty == 1 or stage_difficulty == 2:
-            while total_lives > 0:
-                guessed_number = int(input("Enter a guess: "))
-                comparision = guess_number(random_number,guessed_number)
-                if comparision == "m" or comparision == "l":
-                    total_lives -= 1
-                    print(f"Remaining lives are {total_lives}")
-                    if total_lives == 0:
-                        print("GAME OVER")
-                        game_over = True
-                        
-                elif comparision == "c":
-                    print("You guessed correct")
-                    total_lives = 0
-                    game_over = True
-                else:
-                    print("Invalid, Try again")
+        if attempts > 0:
+            if guess_the_number(guess_number) == True:
+                print("Congratulations,You have guessed thge correct number")
+                game_over = True
+                attempts = 0
+            elif guess_the_number(guess_number) == False:
+                attempts -= 1
+                print("You have entered a wrong guess")
+                print(f"You have {attempts} left")
+            else: 
+                print("Something Happened! Game Terminated")
+                game_over = False
+                attempts = 0
         else:
-            print("Invalid entry, try again")
+            print("Game over! All lives are exhaused")
+            game_over = True
 
 
 
-
-print(
-    """
-    
-                                                                                                                                                          
-  ,ad8888ba,                                                  88                                 ,ad8888ba,                                               
- d8"'    `"8b                                                 ""                                d8"'    `"8b                                              
-d8'                                                                                            d8'                                                        
-88             88       88   ,adPPYba,  ,adPPYba,  ,adPPYba,  88  8b,dPPYba,    ,adPPYb,d8     88             ,adPPYYba,  88,dPYba,,adPYba,    ,adPPYba,  
-88      88888  88       88  a8P_____88  I8[    ""  I8[    ""  88  88P'   `"8a  a8"    `Y88     88      88888  ""     `Y8  88P'   "88"    "8a  a8P_____88  
-Y8,        88  88       88  8PP"""""""   `"Y8ba,    `"Y8ba,   88  88       88  8b       88     Y8,        88  ,adPPPPP88  88      88      88  8PP"""""""  
- Y8a.    .a88  "8a,   ,a88  "8b,   ,aa  aa    ]8I  aa    ]8I  88  88       88  "8a,   ,d88      Y8a.    .a88  88,    ,88  88      88      88  "8b,   ,aa  
-  `"Y88888P"    `"YbbdP'Y8   `"Ybbd8"'  `"YbbdP"'  `"YbbdP"'  88  88       88   `"YbbdP"Y8       `"Y88888P"   `"8bbdP"Y8  88      88      88   `"Ybbd8"'  
-                                                                                aa,    ,88                                                                
-                                                                                 "Y8bbdP"                                                                 
-
-    
-    """
-)
 run_game()
-
-
-
-
-
-
+        
 
 
 
