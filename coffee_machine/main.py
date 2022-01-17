@@ -1,37 +1,64 @@
-from tkinter import Menu
-from menu import MENU
 from resources import resources
+from menu import MENU
 
 
-# ask user for input
-def ask_beverage():
-        choices = ["espresso","latte","capuccino"]
-        user_choice = input("What would you like? (espresso/latte/cappuccino): ")
-        if user_choice in choices:
-            return MENU[user_choice]
-        elif user_choice == "q":
-            return 0
-        elif user_choice == "report":
-            return resources
-        
-   
-# check for requirements 
+# prompt user 
 
-def check_requirements(supply,demand):
-    if supply > demand:
-        return True
-    else: 
-        return False
+def ask_user_input():
+    user_choice = input("What do you want? espresso/Latte/Cappuccino: ")
+    return user_choice
+
+# check availablity 
+
+def check_availablity(beverage):
+    if beverage == 'espresso':
+        water_availablity = resources['water'] >= MENU[beverage]['ingredients']['water']
+        coffee_availablity = resources['coffee'] >= MENU[beverage]['ingredients']['coffee']
+        if water_availablity and coffee_availablity:
+            print(f"Your total is {MENU[beverage]['cost']}")
+        else:
+            print("Beverage cannot be made")
+
+    elif beverage == "latte":
+        water_availablity = resources['water'] >= MENU[beverage]['ingredients']['water']
+        coffee_availablity = resources['coffee'] >= MENU[beverage]['ingredients']['coffee']
+        milk_availablity = resources['milk'] >= MENU[beverage]['ingredients']['milk']
+    
+    elif beverage == 'cappuccino':
+        water_availablity = resources['water'] >= MENU[beverage]['ingredients']['water']
+        coffee_availablity = resources['coffee'] >= MENU[beverage]['ingredients']['coffee']
+        milk_availablity = resources['milk'] >= MENU[beverage]['ingredients']['milk']
 
 
-# run script 
 
+
+
+
+# function to run script 
 def run_script():
 
-    turn_off = False 
+    machine_off = False 
 
-    while not turn_off:
-       selected_beverage =  ask_beverage()
-       
+    while not machine_off:
+        user_choice = ask_user_input()
+        if user_choice == "off":
+            print("System Shutting Down")
+            machine_off = True
+
+        elif  user_choice == "report":
+            print("RESOURCE REPORTS")
+            for key in resources:
+                print(f"{key}: {resources[key]}")
+        elif user_choice == "espresso":
+            check_availablity(user_choice)
+            
+            
+
+
+run_script()
+
+
+
+
 
 
