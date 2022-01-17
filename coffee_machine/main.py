@@ -11,26 +11,21 @@ def ask_user_input():
 # check availablity 
 
 def check_availablity(beverage):
-    if beverage == 'espresso':
-        water_availablity = resources['water'] >= MENU[beverage]['ingredients']['water']
-        coffee_availablity = resources['coffee'] >= MENU[beverage]['ingredients']['coffee']
-        if water_availablity and coffee_availablity:
-            print(f"Your total is {MENU[beverage]['cost']}")
-        else:
-            print("Beverage cannot be made")
-
-    elif beverage == "latte":
-        water_availablity = resources['water'] >= MENU[beverage]['ingredients']['water']
-        coffee_availablity = resources['coffee'] >= MENU[beverage]['ingredients']['coffee']
-        milk_availablity = resources['milk'] >= MENU[beverage]['ingredients']['milk']
     
-    elif beverage == 'cappuccino':
+
+    if beverage == "espresso":
+        water_availablity = resources['water'] >= MENU[beverage]['ingredients']['water']
+        coffee_availablity = resources['coffee'] >= MENU[beverage]['ingredients']['coffee']
+        availablity = [water_availablity,coffee_availablity]
+
+        print(availablity) 
+    else: 
         water_availablity = resources['water'] >= MENU[beverage]['ingredients']['water']
         coffee_availablity = resources['coffee'] >= MENU[beverage]['ingredients']['coffee']
         milk_availablity = resources['milk'] >= MENU[beverage]['ingredients']['milk']
+        availablity = [water_availablity, coffee_availablity, milk_availablity]
 
-
-
+        print(availablity)
 
 
 
@@ -49,8 +44,8 @@ def run_script():
             print("RESOURCE REPORTS")
             for key in resources:
                 print(f"{key}: {resources[key]}")
-        elif user_choice == "espresso":
-            check_availablity(user_choice)
+        
+        check_availablity(user_choice)
             
             
 
