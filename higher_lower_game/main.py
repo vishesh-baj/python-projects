@@ -1,5 +1,4 @@
 import random
-from tabnanny import check
 import art
 from game_data import data
 
