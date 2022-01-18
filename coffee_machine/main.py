@@ -36,6 +36,7 @@ def process_coins():
     total += int(input("How many pennies?: ")) * .01
     return total
 
+
 def make_coffee(drink_name, order_ingredients):
     """Deduct the required ingredients from the resources"""
     for item in order_ingredients:
