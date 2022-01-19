@@ -1,6 +1,6 @@
 from quiz_model import Question
 from data import question_data
-
+from quiz_brain import QuizBrain
 # question bank list
 def create_question_bank(question_data):
     question_bank = []
@@ -14,36 +14,13 @@ def create_question_bank(question_data):
 
 question_bank = create_question_bank(question_data)
 
-score = 0
+quiz = QuizBrain(question_bank)
 
-for i in question_bank:
-    print(i.text)
-    answer = input("Enter True or False")
-    if answer == i.answer:
-        score += 1
-        print("Correct")
-    else:
-        score -= 1
-        print("Incorrect")
-        
-    
+while quiz.still_has_questions():
+    quiz.next_question()
 
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
+if quiz.still_has_questions() == False:
+    quiz.get_final_score()
 
 
 
