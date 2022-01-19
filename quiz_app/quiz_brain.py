@@ -1,6 +1,4 @@
 class QuizBrain:
-
-
     def __init__(self, question_lst):
         self.score = 0
         self.question_num = 0
@@ -30,7 +28,8 @@ class QuizBrain:
         print("\n")
 
     def get_final_score(self):
-        print(f"Your final score is: {self.score}/12")
+        print(f"Your final score is: {self.score}/{len(self.question_lst)}")
+        
 
 
 
