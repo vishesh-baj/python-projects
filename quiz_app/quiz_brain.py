@@ -30,7 +30,7 @@ class QuizBrain:
     def get_final_score(self):
         print(f"Your final score is: {self.score}/{len(self.question_lst)}")
         
-
+        
 
 
 

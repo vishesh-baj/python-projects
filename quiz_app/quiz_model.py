@@ -6,7 +6,6 @@ class Question:
         self.text = text 
         self.answer = answer
 
-new_question = Question("Awesome", "False")
 
 
 
