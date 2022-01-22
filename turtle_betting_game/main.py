@@ -20,7 +20,6 @@ user_bet_amount = int(input("Enter the betting amount: "))
 percentage_won = 2
 
 
-
 if user_bet:
     is_race_on = True
      
