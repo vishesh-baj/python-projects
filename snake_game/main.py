@@ -14,11 +14,9 @@ screen.title("Snake Game")
 # turning off tracer 
 screen.tracer(0)
 
-# creating snake instance 
+# creating snake instance on screen
 snake = Snake()
 
-# drawing snake on screen
-snake.draw_snake()
 
 game_over = False 
 
