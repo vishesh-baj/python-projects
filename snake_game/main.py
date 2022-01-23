@@ -17,7 +17,12 @@ screen.tracer(0)
 # creating snake instance on screen
 snake = Snake()
 
-
+# to listen to key events
+screen.listen()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.left, "Left")
+screen.onkey(snake.right, "Right")
 game_over = False 
 
 while not game_over:
@@ -27,4 +32,4 @@ while not game_over:
     # Move snake forward
     snake.move_snake()   
 # exit on click
-screen.exitonclick() 
+screen.exitonclick()
