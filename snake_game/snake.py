@@ -17,17 +17,28 @@ class Snake:
         self.draw_snake()
         self.head = self.segments_list[0]
     
+    def add_segment(self,position):
+        segment = Turtle('square')  
+        segment.pensize(10)
+        segment.color('white')
+        segment.penup()
+        segment.goto(position)
+
+        self.segments_list.append(segment) 
+
+
+
+    def extend(self):
+        self.add_segment(self.segments_list[-1].position())
+
+        
 
 
     def draw_snake(self):
         for position in self.initial_cords:
-            segment = Turtle('square')  
-            segment.pensize(10)
-            segment.color('white')
-            segment.penup()
-            segment.goto(position)
+            self.add_segment(position)
 
-            self.segments_list.append(segment) 
+            
     
     def move_snake(self):
         for segment_num in range(len(self.segments_list) - 1, 0, -1):

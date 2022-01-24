@@ -39,14 +39,26 @@ while not game_over:
         
         # refresh food
         food.refresh()
-
+        # increase score
         score.increase_score()
+        # extend snake 
+        snake.extend()
 
     # collision with wall 
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         score.game_over()
         print("Game over")
         game_over = True
+
+    
+    for segment in snake.segments_list:
+        if segment == snake.head:
+            pass
+        elif snake.head.distance(segment) < 10:
+            game_over = True
+            score.game_over()
+        
+
 
         
 
