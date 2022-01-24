@@ -8,6 +8,7 @@ DOWN = 270
 LEFT = 180
 RIGHT = 0
 
+ 
 class Snake:
     def __init__(self):
         self.initial_cords = START_CORDS
@@ -15,7 +16,7 @@ class Snake:
         # calling this method once the snake object is instanciated 
         self.draw_snake()
         self.head = self.segments_list[0]
-
+    
 
 
     def draw_snake(self):
@@ -37,6 +38,7 @@ class Snake:
              
         self.head.forward(MOVE_DISTANCE)
 
+
     def up(self):
         if self.head.heading() != DOWN:
             self.head.setheading(UP)    
@@ -52,6 +54,17 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+    
+    def sight(self):
+        print("Ask specifics! ")
+        print("Specific construct of the self analysis of this world ! ")
+
+    def signht_specific_1(self):
+        print("Syntax sugar")
+
+
+
+
 
     
 
